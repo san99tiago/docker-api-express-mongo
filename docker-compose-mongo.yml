@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  mongo:
+    container_name: mongo_jwt_app
+    image: mongo
+    env_file:
+      # Remember to have the ".env" file at the same level and correctly configured
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME} # from .env file
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} # from .env file
+    ports:
+      - "27017:27017"
+    volumes:
+      - docker_volume_mongo_jwt:/data/db
+    networks:
+      - docker_apis_and_apps
+
+volumes:
+  docker_volume_mongo_jwt:
+    name: "docker_volume_mongo_jwt"
+
+networks:
+  docker_apis_and_apps:
+    driver: bridge
+    name: docker_apis_and_apps
