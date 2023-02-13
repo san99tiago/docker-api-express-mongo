@@ -1,0 +1,29 @@
+# Run with:
+# --> docker-compose --file docker-compose-express.yml up --build
+
+version: "3.8"
+
+services:
+  express:
+    container_name: express_jwt_app
+    build:
+      context: ./app/
+      args:
+        APP_PORT: ${APP_PORT} # from .env file
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME} # from .env file
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD} # from .env file
+        MONGO_ENDPOINT: ${MONGO_ENDPOINT} # from .env file
+        API_SECRET: ${API_SECRET} # from .env file
+        JWT_SIGNATURE_EXPIRE_TIME: ${JWT_SIGNATURE_EXPIRE_TIME} # from .env file
+    env_file:
+      # Remember to have the ".env" file at the same level and correctly configured
+      - .env
+    ports:
+      - "${APP_PORT}:${APP_PORT}" # from .env file
+    networks:
+      - docker_apis_and_apps
+
+networks:
+  docker_apis_and_apps:
+    driver: bridge
+    name: docker_apis_and_apps

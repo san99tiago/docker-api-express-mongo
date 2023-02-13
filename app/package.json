@@ -1,0 +1,26 @@
+{
+  "name": "docker-api-express-mongo",
+  "version": "1.0.0",
+  "description": "REST-API with JWT auth built on top of Express and backend in MongoDB for raw climate-data CRUD operations.",
+  "main": "app.js",
+  "scripts": {
+    "node": "node app.js",
+    "nodemon": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "rest-api",
+    "jwt"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
