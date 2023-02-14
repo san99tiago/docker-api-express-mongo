@@ -3,6 +3,10 @@ const bcrypt = require("bcrypt");
 let User = require("../models/user");
 
 exports.signup = (req, res) => {
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting user register process...")
+  console.log("--------------------------------------------------------------");
+
   if (
     req.body.hasOwnProperty("fullName") &&
     req.body.hasOwnProperty("email") &&
@@ -37,6 +41,10 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting login process...")
+  console.log("--------------------------------------------------------------");
+
   User.findOne({
       email: req.body.email
     })
@@ -56,7 +64,7 @@ exports.signin = (req, res) => {
       }
 
       // Compare passwords of body and real one
-      var passwordIsValid = bcrypt.compareSync(
+      let passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password
       );
@@ -69,22 +77,26 @@ exports.signin = (req, res) => {
           });
       }
       // Signing token with user id
-      var token = jwt.sign(
-        {
-          id: user.id
-        },
-        process.env.API_SECRET,
-        {
-          expiresIn: process.env.JWT_SIGNATURE_EXPIRE_TIME  // Total time when JWT is available in seconds
+      var token = jwt.sign({
+        id: user.id
+      }, process.env.API_SECRET, {
+        expiresIn: Number(process.env.JWT_SIGNATURE_EXPIRE_TIME)
+      });
+
+      // We update "lastLogin" field for the TTL index (the ones that deletes users after X amount of time)
+      var currentDateForLastLogin = Date.now();
+      User.updateOne({email: req.body.email},
+        {lastLogin: currentDateForLastLogin}, function (err, docs) {
+          if (err){
+              console.log(err)
+          }
+          else{
+              console.log(`Updated user with email ${req.body.email} lastLogin set to ${currentDateForLastLogin}`);
+          }
         }
       );
 
-      // We update "lastLogin" field for the TTL index (the ones that deletes users after X amount of time)
-      User.updateOne({ email: req.body.email }, {
-        lastLogin: Date.now
-      })
-
-      // Respond client request with user profile success message and JWT access token .
+      // Respond client request with user profile success message and JWT access token
       res.status(200)
         .send({
           user: {

@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
 /**
  * User Schema
  */
-var userSchema = new Schema({
+let userSchema = new Schema({
   fullName: {
     type: String,
     required: [true, "fullName not provided "],

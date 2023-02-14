@@ -12,7 +12,7 @@ const app = express();
 app.disable("etag");
 
 // Configure "logging" for server requests
-app.use(morgan("short"));
+app.use(morgan("combined"));
 
 // Parse requests of content-type - application/json
 app.use(express.json());
