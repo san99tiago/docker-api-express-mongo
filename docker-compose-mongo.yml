@@ -5,11 +5,11 @@ services:
     container_name: mongo_jwt_app
     image: mongo
     env_file:
-      # Remember to have the ".env" file at the same level and correctly configured
-      - .env
+      # Remember to have the ".env" configured
+      - ./app/.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME} # from .env file
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} # from .env file
+      - MONGO_USER=${MONGO_USER} # from .env file
+      - MONGO_PASSWORD=${MONGO_PASSWORD} # from .env file
     ports:
       - "27017:27017"
     volumes:
