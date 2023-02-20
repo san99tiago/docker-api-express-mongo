@@ -1,9 +1,18 @@
 let express = require("express");
 let router = express.Router();
 let verifyToken = require('../middlewares/authJWT');
+let Data = require("../models/data");
+
 
 // "student" or "teacher" endpoint (auth required)
-router.get("/data/readings", verifyToken, function (req, res) {
+router.get("/data/readings/:id", verifyToken, function (req, res) {
+
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting [GET] /data/readings process...")
+  console.log("--------------------------------------------------------------");
+
+  const id = req.params.id;
+
   if (req.expired) {
     res.status(403)
     .send({
@@ -35,6 +44,11 @@ router.get("/data/readings", verifyToken, function (req, res) {
 
 // "teacher" only endpoint (auth required)
 router.post("/data/readings", verifyToken, function (req, res) {
+
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting [POST] /data/readings process...")
+  console.log("--------------------------------------------------------------");
+
   if (req.expired) {
     res.status(403)
     .send({
@@ -52,10 +66,44 @@ router.post("/data/readings", verifyToken, function (req, res) {
   }
 
   if (req.user.role == "administrator" || req.user.role == "teacher") {
-    res.status(200)
-      .send({
-        message: "Congratulations, you entered the '/data/reading/' [POST] endpoint"
+
+    console.log(req.body);
+    dateTimeString =  new Date().toISOString();
+
+    if (Array.isArray(req.body)) {
+      console.log("Array Element Update")
+      for (let i = 0; i < req.body.length; i++) {
+        req.body[i]["Time"] = dateTimeString;
+      }
+      const data = new Data(req.body);
+      data.collection.insertMany(
+        req.body
+      ).then((docs) => {
+        console.log(docs)
+        res.status(200)
+        .send(docs);
+      }).catch((err) => {
+        console.log(err)
       });
+    } else {
+      console.log("Single Element Update")
+      req.body["Time"] = dateTimeString;
+      const data = new Data(req.body);
+      data.save((err, data) => {
+        if (err) {
+          res.status(500)
+          .send({
+            message: err
+          });
+          return;
+        } else {
+          console.log(data)
+          res.status(200)
+          .send(data);
+        }
+      });
+    }
+
   } else {
     res.status(403)
       .send({
@@ -63,5 +111,110 @@ router.post("/data/readings", verifyToken, function (req, res) {
       });
   }
 });
+
+// "student" or "teacher" endpoint (auth required)
+router.get("/data/advanced/max-precipitation", verifyToken, function (req, res) {
+
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting [GET] /data/advanced/max-precipitation process...")
+  console.log("--------------------------------------------------------------");
+
+  if (req.expired) {
+    res.status(403)
+    .send({
+      message: "JWT expired, please log in again"
+    });
+    return
+  }
+
+  if (req.user == undefined) {
+    res.status(403)
+    .send({
+      message: "Invalid JWT token"
+    });
+    return
+  }
+
+  if (req.user.role == "administrator" || req.user.role == "teacher" || req.user.role == "student") {
+
+    // It's necessary to do an "aggregate", because precipitation field is string and has to be converted to double first
+    Data.aggregate([
+      { $addFields: { precipitation: { $toDouble: "$Precipitation mm/h" } } },
+      { $sort: { precipitation: -1 } },
+      { $limit: 1 }
+    ], function (err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(results);
+        res.status(200)
+          .send(results);
+      }
+    });
+  } else {
+    res.status(403)
+      .send({
+        message: "Unauthorized access"
+      });
+  }
+});
+
+// "student" or "teacher" endpoint (auth required)
+router.get("/data/query", verifyToken, function (req, res) {
+
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting [GET] /data/query process...")
+  console.log("--------------------------------------------------------------");
+
+  if (req.expired) {
+    res.status(403)
+    .send({
+      message: "JWT expired, please log in again"
+    });
+    return
+  }
+
+  if (req.user == undefined) {
+    res.status(403)
+    .send({
+      message: "Invalid JWT token"
+    });
+    return
+  }
+
+  if (req.user.role == "administrator" || req.user.role == "teacher" || req.user.role == "student") {
+
+    console.log(req.query)
+
+    Data.find({
+      "Device Name": req.query.station,
+      "Time": { $gte: req.query.datetimeStart, $lte: req.query.datetimeEnd }
+    })
+    .select({
+      "Temperature (°C)": 1,
+      "Temperature (°F)": 1,
+      "Atmospheric Pressure (kPa)": 1,
+      "Solar Radiation (W/m2)": 1,
+      "Precipitation mm/h": 1,
+      "Time": 1,
+      "Device Name": 1,
+    })
+    .exec(function (err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(results);
+        res.status(200)
+          .send(results);
+      }
+    });
+  } else {
+    res.status(403)
+      .send({
+        message: "Unauthorized access"
+      });
+  }
+});
+
 
 module.exports = router;

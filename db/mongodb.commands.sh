@@ -42,6 +42,17 @@ db.users.createIndex(
 
 
 ################################################################################
+# CREATING INDEXES FOR WEATHER DATA
+################################################################################
+
+# Create single index for weather_data collection based on "Device Name" only
+use api_database
+db.weather_data.createIndex(
+  { "Device Name": 1}
+)
+
+
+################################################################################
 # TROUBLESHOOTING
 ################################################################################
 
@@ -71,10 +82,17 @@ db.users.find({"role": "admin"}, {fullName: 1, email: 1, role: 1})
 use api_database
 db.users.getIndexes()
 
+# Show existing indexes in "api_database" under the "weather_data" collection
+use api_database
+db.weather_data.getIndexes()
+
 
 ################################################################################
 # DELETION (WARNING ZONE)
 ################################################################################
+
+# Delete ALL data that is used for testing (weather data of 2023 and newer)
+db.weather_data.drop({Time: {pattern: '2023',options: ''}})
 
 # If you ever need to delete the users (warning, only for cleaning)
 use api_database
