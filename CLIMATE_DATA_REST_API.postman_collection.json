@@ -1,469 +1,693 @@
 {
-  "info": {
-    "_postman_id": "01b8c7c6-29bc-4acf-acc8-3935e58e6034",
-    "name": "CLIMATE_DATA_REST_API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "11256973"
-  },
-  "item": [
-    {
-      "name": "/",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{api_endpoint}}/",
-          "host": ["{{api_endpoint}}"],
-          "path": [""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/register (incomplete)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "fullName",
-              "value": "Incomplete 1",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "incomplete1@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "password1",
-              "type": "text",
-              "disabled": true
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/register",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/register (student 1)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "fullName",
-              "value": "Student 1",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "student1@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "student1",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/register",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/register (student 2)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "fullName",
-              "value": "Student 2",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "student2@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "student2",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/register",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/register (admin)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "fullName",
-              "value": "Admin 1",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "admin1@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "admin1",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/register",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/login (student 1)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "email",
-              "value": "student1@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "student1",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/login",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/login (student 2)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "email",
-              "value": "student2@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "student2",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/login",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/login (admin)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "email",
-              "value": "admin1@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "admin1",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/login",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/users/login (wrong)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "email",
-              "value": "fake@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "fake",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/users/login",
-          "host": ["{{api_endpoint}}"],
-          "path": ["users", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings (non-auth)",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings (auth-student)",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTliZTlhMGFkZTRhMTE1MjE2YmJiOCIsImlhdCI6MTY3Njc1MDA4NywiZXhwIjoxNjc2NzUwMzg3fQ.f055NOSVY4Unvc7r5rILQiqly7XokitgIXM7b7i4XA8",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings (auth-admin)",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTliZWFlMGFkZTRhMTE1MjE2YmJiYyIsImlhdCI6MTY3Njg1ODYwNiwiZXhwIjoxNjc2ODU4OTA2fQ.RRq7gcbW06qAThP6vmbrI7324UizA1jmTFwq18x8nrA",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings (auth-student)",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTliZTlhMGFkZTRhMTE1MjE2YmJiOCIsImlhdCI6MTY3Njc1MDA4NywiZXhwIjoxNjc2NzUwMzg3fQ.f055NOSVY4Unvc7r5rILQiqly7XokitgIXM7b7i4XA8",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings 1 (auth-admin)",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njg2NjYyOCwiZXhwIjoxNjc2ODY5NjI4fQ.2US1VhTbsjptIh9pwFXgb8oFpOzZ3Zrp0ZlvCOVV-F8",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/readings N (auth-admin)",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njg2Njc1MCwiZXhwIjoxNjc2ODY5NzUwfQ.cUFy4O5rB-ZKVtRKzGcPyxEEOir5vbLNsCH2dPQ-DpI",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "[\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 1\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 2\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 3\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 4\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 5\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 6\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    }\r\n]",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{api_endpoint}}/data/readings",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "readings"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/advanced/max-precipitation (auth)",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYWJhNTY3MDhiZTE1OGJjYWMzZCIsImlhdCI6MTY3Njg2OTM0NCwiZXhwIjoxNjc2ODcyMzQ0fQ.2oiyWIlUaShS7kFAe8eZoDvVwyZWy8JAYZevAAXXS5g",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{api_endpoint}}/data/advanced/max-precipitation",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "advanced", "max-precipitation"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "/data/query (auth)",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYWJhNTY3MDhiZTE1OGJjYWMzZCIsImlhdCI6MTY3Njg2OTM0NCwiZXhwIjoxNjc2ODcyMzQ0fQ.2oiyWIlUaShS7kFAe8eZoDvVwyZWy8JAYZevAAXXS5g",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{api_endpoint}}/data/query?station=CUSTOM LOCATION FAKE DATA X&start=2023-00-00T00:00:00.000Z&end=2023-02-20T04:46:50.031Z",
-          "host": ["{{api_endpoint}}"],
-          "path": ["data", "query"],
-          "query": [
-            {
-              "key": "station",
-              "value": "CUSTOM LOCATION FAKE DATA X"
-            },
-            {
-              "key": "start",
-              "value": "2023-00-00T00:00:00.000Z"
-            },
-            {
-              "key": "end",
-              "value": "2023-02-20T04:46:50.031Z"
-            }
-          ]
-        }
-      },
-      "response": []
-    }
-  ],
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "exec": [""]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "exec": [""]
-      }
-    }
-  ],
-  "variable": [
-    {
-      "key": "api_endpoint",
-      "value": "http://localhost:3000",
-      "type": "string"
-    }
-  ]
+	"info": {
+		"_postman_id": "01b8c7c6-29bc-4acf-acc8-3935e58e6034",
+		"name": "CLIMATE_DATA_REST_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11256973"
+	},
+	"item": [
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/query?role",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/users/query?role=student",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"query"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "student"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/register (incomplete)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fullName",
+							"value": "Incomplete 1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "incomplete1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/register",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/register (student 1)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fullName",
+							"value": "Student 1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "student1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "student1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/register",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/register (student 2)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fullName",
+							"value": "Student 2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "student2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "student2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/register",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/register (admin)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fullName",
+							"value": "Admin 1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/register",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login (student 1)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "student1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "student1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/login",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login (student 2)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "student2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "student2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/login",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login (admin)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/login",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login (wrong)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "fake@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "fake",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/login",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/advanced/make-admins",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"student1@gmail.com\", \"student2@gmail.com\"]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/users/advanced/make-admins",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"advanced",
+						"make-admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/:id (student 1)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/users/63f41f599609b5d0a9473e04",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"63f41f599609b5d0a9473e04"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/advanced/all-students",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/users/advanced/all-students",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"users",
+						"advanced",
+						"all-students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings/:id (non-auth)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f2f8410be22c39ece6ee25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings/:id (auth-student)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f2f8410be22c39ece6ee25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings/:id (auth-admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk0MTYzMywiZXhwIjoxNjc2OTQ0NjMzfQ.JV-tje0v0DoyYD02zVMeKocyCs0Wq3s2MiavMMZRVRY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f2f8410be22c39ece6ee25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings (auth-student)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings 1 (auth-admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk1ODcyNiwiZXhwIjoxNjc2OTYxNzI2fQ.9C72PWzLAwU4wOrOHTW0jk8rN1Khx8VqnoKw-DnIrvk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings/:id 1 (auth-admin)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk0NDEwOCwiZXhwIjoxNjc2OTQ3MTA4fQ.GM7Hx7cV1cJkbecl5qefYRi0W6EZA6kSP9Zm1jTmf18",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Location\": \"-55.00000, 55.00000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f2fb320be22c39ece6ee2c",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f2fb320be22c39ece6ee2c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/readings N (auth-admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njg2Njc1MCwiZXhwIjoxNjc2ODY5NzUwfQ.cUFy4O5rB-ZKVtRKzGcPyxEEOir5vbLNsCH2dPQ-DpI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 1\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 2\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 3\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 4\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 5\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 6\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/advanced/max-precipitation (auth)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/advanced/max-precipitation",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"advanced",
+						"max-precipitation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data/query?station&start&end (auth)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk1ODcyNiwiZXhwIjoxNjc2OTYxNzI2fQ.9C72PWzLAwU4wOrOHTW0jk8rN1Khx8VqnoKw-DnIrvk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/query?station=CUSTOM LOCATION FAKE DATA X&start=2023-00-00T00:00:00.000Z&end=2023-02-20T04:46:50.031Z",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"query"
+					],
+					"query": [
+						{
+							"key": "station",
+							"value": "CUSTOM LOCATION FAKE DATA X"
+						},
+						{
+							"key": "start",
+							"value": "2023-00-00T00:00:00.000Z"
+						},
+						{
+							"key": "end",
+							"value": "2023-02-20T04:46:50.031Z"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_endpoint",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
 }
