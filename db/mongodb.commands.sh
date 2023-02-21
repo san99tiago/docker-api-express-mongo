@@ -45,11 +45,13 @@ db.users.createIndex(
 # CREATING INDEXES FOR WEATHER DATA
 ################################################################################
 
-# Create single index for weather_data collection based on "Device Name" only
+# Create single-key index for weather_data collection based on "Device Name" only
 use api_database
-db.weather_data.createIndex(
-  { "Device Name": 1}
-)
+db.weather_data.createIndex({"Device Name":1})
+
+# Create multi-key index for weather_data collection based on "Device Name" and "Time"
+use api_database
+db.weather_data.createIndex({"Device Name":1,"Time":1})
 
 
 ################################################################################

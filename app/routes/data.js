@@ -12,6 +12,7 @@ router.get("/data/readings/:id", verifyToken, function (req, res) {
   console.log("--------------------------------------------------------------");
 
   const id = req.params.id;
+  console.log(id);
 
   if (req.expired) {
     res.status(403)
@@ -30,10 +31,15 @@ router.get("/data/readings/:id", verifyToken, function (req, res) {
   }
 
   if (req.user.role == "administrator" || req.user.role == "teacher" || req.user.role == "student") {
-    res.status(200)
-      .send({
-        message: "Congratulations, you entered the '/data/reading/' [GET] endpoint"
-      });
+    Data.findById(String(id), function (err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(results);
+        res.status(200)
+          .send(results);
+      }
+    });
   } else {
     res.status(403)
       .send({
@@ -68,13 +74,13 @@ router.post("/data/readings", verifyToken, function (req, res) {
   if (req.user.role == "administrator" || req.user.role == "teacher") {
 
     console.log(req.body);
-    dateTimeString =  new Date().toISOString();
+    let dateTimeString =  new Date().toISOString();
 
     if (Array.isArray(req.body)) {
       console.log("Array Element Update")
       for (let i = 0; i < req.body.length; i++) {
         req.body[i]["Time"] = dateTimeString;
-      }
+      };
       const data = new Data(req.body);
       data.collection.insertMany(
         req.body
@@ -104,6 +110,51 @@ router.post("/data/readings", verifyToken, function (req, res) {
       });
     }
 
+  } else {
+    res.status(403)
+      .send({
+        message: "Unauthorized access"
+      });
+  }
+});
+
+// "teacher" only endpoint (auth required)
+router.put("/data/readings/:id", verifyToken, function (req, res) {
+
+  console.log("--------------------------------------------------------------");
+  console.log("--> Starting [PUT] /data/readings/:id process...")
+  console.log("--------------------------------------------------------------");
+
+  const id = req.params.id;
+  console.log(id);
+
+  if (req.expired) {
+    res.status(403)
+    .send({
+      message: "JWT expired, please log in again"
+    });
+    return
+  }
+
+  if (req.user == undefined) {
+    res.status(403)
+    .send({
+      message: "Invalid JWT token."
+    });
+    return
+  }
+
+  if (req.user.role == "administrator" || req.user.role == "teacher") {
+
+    Data.findByIdAndUpdate(id, req.body, { new: true }, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200)
+          .send(result);
+      }
+    });
   } else {
     res.status(403)
       .send({
@@ -188,7 +239,7 @@ router.get("/data/query", verifyToken, function (req, res) {
 
     Data.find({
       "Device Name": req.query.station,
-      "Time": { $gte: req.query.datetimeStart, $lte: req.query.datetimeEnd }
+      "Time": { $gte: req.query.start, $lte: req.query.end }
     })
     .select({
       "Temperature (°C)": 1,
