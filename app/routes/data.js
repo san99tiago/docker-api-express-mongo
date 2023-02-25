@@ -3,7 +3,6 @@ let router = express.Router();
 let verifyToken = require('../middlewares/authJWT');
 let Data = require("../models/data");
 
-
 // "student" or "teacher" endpoint (auth required)
 router.get("/data/readings/:id", verifyToken, function (req, res) {
 

@@ -1,6 +1,7 @@
 const dotenv = require("dotenv")
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 let homeRoutes = require("./routes/home");
@@ -17,6 +18,9 @@ app.disable("etag");
 
 // Configure "logging" for server requests
 app.use(morgan("combined"));
+
+// Allow all CORS
+app.use(cors());
 
 // Parse requests of content-type - application/json
 app.use(express.json());
