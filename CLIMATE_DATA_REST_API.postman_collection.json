@@ -21,7 +21,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1308"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:06:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Welcome to the default endpoint for the climate raw data API!\",\n    \"paths_auth\": [\n        \"/users/register [POST]\",\n        \"/users/login [POST]\"\n    ],\n    \"paths_data_students_and_teachers\": [\n        \"[GET] /data/readings\"\n    ],\n    \"paths_data_teachers_only\": [\n        \"[POST] /data/readings\"\n    ],\n    \"usage_1\": \"First, make sure that you register with your email at {'/users/register' [POST]} with 'x-www-form-urlencoded' parameters of 'fullName', 'email', and 'password'. This will create your user on the system.\",\n    \"usage_2\": \"After registering, go to {'/users/login' [POST]} with 'x-www-form-urlencoded' parameters of 'email' and 'password', and obtain the JWT token.\",\n    \"usage_3\": \"If you are a <student> or a <teacher>, you can access {'/data/*' [GET]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)\",\n    \"usage_4\": \"If you are a <teacher>, you can access {'/data/*' [POST]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)\",\n    \"usage_5\": \"If you try to access the <student> or <teacher> endpoints without the JWT token (corresponding to the 'Authorization' header value), you won't be able to access the endpoint (you can try).\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/query?role",
@@ -45,7 +97,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/query?role",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/query?role=student",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"query"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "student"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "209"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:06:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"63fa5a5f20be69282878be87\",\n        \"fullName\": \"Student 1\",\n        \"email\": \"student1@gmail.com\",\n        \"role\": \"student\"\n    },\n    {\n        \"_id\": \"63fa947f20be69282878be98\",\n        \"fullName\": \"Student 2\",\n        \"email\": \"student2@gmail.com\",\n        \"role\": \"student\"\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "/users/register (incomplete)",
@@ -84,7 +204,81 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/register (incomplete)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fullName",
+									"value": "Incomplete 1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "incomplete1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/register",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "120"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:07:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You must pass properties 'fullName', 'email', 'role' and 'password' in the body as 'x-www-form-urlencoded'\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/register (student 1)",
@@ -122,7 +316,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/register (student 1)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fullName",
+									"value": "Student 1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "student1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "student1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/register",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 18:58:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User Registered successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/register (student 2)",
@@ -160,7 +427,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/register (student 2)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fullName",
+									"value": "Student 2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "student2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "student2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/register",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:07:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User Registered successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/register (admin)",
@@ -198,7 +538,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/register (admin)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fullName",
+									"value": "Admin 1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/register",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:08:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User Registered successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/login (student 1)",
@@ -231,7 +644,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/login (student 1)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "student1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "student1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/login",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "376"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:08:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"63fa5a5f20be69282878be87\",\n        \"email\": \"student1@gmail.com\",\n        \"fullName\": \"Student 1\"\n    },\n    \"message\": \"Login was successful. Use 'Authorization' header with the given 'accessToken'\",\n    \"accessToken\": \"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE1YTVmMjBiZTY5MjgyODc4YmU4NyIsImlhdCI6MTY3NzM2NjUyOCwiZXhwIjoxNjc3MzY5NTI4fQ.0lq3_pl5eDovswkbuifTOqAnRvKMUUHqZ9Ys92pWrXg\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/login (student 2)",
@@ -264,7 +745,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/login (student 2)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "student2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "student2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/login",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "376"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:09:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"63fa94b520be69282878be9d\",\n        \"email\": \"student2@gmail.com\",\n        \"fullName\": \"Student 2\"\n    },\n    \"message\": \"Login was successful. Use 'Authorization' header with the given 'accessToken'\",\n    \"accessToken\": \"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE5NGI1MjBiZTY5MjgyODc4YmU5ZCIsImlhdCI6MTY3NzM2NjU0MCwiZXhwIjoxNjc3MzY5NTQwfQ.CDBnwXSrY8JXvP2ut-OyoPGcZEoCSfsDxJNgcbo4Jco\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/login (admin)",
@@ -297,7 +846,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/login (admin)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/login",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "372"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:09:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"63fa94e520be69282878bea5\",\n        \"email\": \"admin1@gmail.com\",\n        \"fullName\": \"Admin 1\"\n    },\n    \"message\": \"Login was successful. Use 'Authorization' header with the given 'accessToken'\",\n    \"accessToken\": \"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE5NGU1MjBiZTY5MjgyODc4YmVhNSIsImlhdCI6MTY3NzM2NjU1MSwiZXhwIjoxNjc3MzY5NTUxfQ.MJjXveO-C3nQ67mQfHtz1h0ptlyx9JfPT2jqYIYVPDg\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/login (wrong)",
@@ -330,7 +947,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/login (wrong)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "fake@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fake",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/login",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:09:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User Not found.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/advanced/make-admins",
@@ -358,25 +1043,141 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/advanced/make-admins",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\"student1@gmail.com\", \"student2@gmail.com\"]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/users/advanced/make-admins",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"advanced",
+								"make-admins"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:09:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"acknowledged\": true,\n    \"modifiedCount\": 2,\n    \"upsertedId\": null,\n    \"upsertedCount\": 0,\n    \"matchedCount\": 2\n}"
+				}
+			]
 		},
 		{
-			"name": "/users/:id (student 1)",
+			"name": "/users/:id (student)",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{api_endpoint}}/users/63f41f599609b5d0a9473e04",
+					"raw": "{{api_endpoint}}/users/63fa5a5f20be69282878be87",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"users",
-						"63f41f599609b5d0a9473e04"
+						"63fa5a5f20be69282878be87"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/:id (student)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/users/63fa5a5f20be69282878be87",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"63fa5a5f20be69282878be87"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "263"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:10:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63fa5a5f20be69282878be87\",\n    \"fullName\": \"Student 1\",\n    \"email\": \"student1@gmail.com\",\n    \"role\": \"student\",\n    \"password\": \"$2b$08$wet1IcwxLcQzuX4THH0lwuNx.pExQoxNNFNOVMwp0d8keDvsKgZhC\",\n    \"createdAt\": \"2023-02-25T18:58:39.115Z\",\n    \"lastLogin\": \"2023-02-25T23:08:48.311Z\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "/users/advanced/all-students",
@@ -395,7 +1196,61 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/users/advanced/all-students",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/users/advanced/all-students",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"users",
+								"advanced",
+								"all-students"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:10:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"acknowledged\": true,\n    \"deletedCount\": 1\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings/:id (non-auth)",
@@ -414,7 +1269,61 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings/:id (non-auth)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f2f8410be22c39ece6ee25"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:10:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid JWT token\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings/:id (auth-student)",
@@ -423,23 +1332,83 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"value": "{{currentJwtTokenStudent}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+					"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"data",
 						"readings",
-						"63f2f8410be22c39ece6ee25"
+						"63f9aae72135908d2391bbb1"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings/:id (auth-student)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f9aae72135908d2391bbb1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "489"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:11:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63f9aae72135908d2391bbb1\",\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"50\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-55.00000, 55.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-25T06:29:59.889Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings/:id (auth-admin)",
@@ -448,23 +1417,83 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk0MTYzMywiZXhwIjoxNjc2OTQ0NjMzfQ.JV-tje0v0DoyYD02zVMeKocyCs0Wq3s2MiavMMZRVRY",
+						"value": "{{currentJwtTokenAdmin}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{api_endpoint}}/data/readings/63f2f8410be22c39ece6ee25",
+					"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"data",
 						"readings",
-						"63f2f8410be22c39ece6ee25"
+						"63f45c19bf95fa765835b57e"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings/:id (auth-admin)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f45c19bf95fa765835b57e"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "491"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63f45c19bf95fa765835b57e\",\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"70.0\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-30.00000, 30.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-21T05:52:25.995Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings (auth-student)",
@@ -473,7 +1502,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"value": "{{currentJwtTokenStudent}}",
 						"type": "text"
 					}
 				],
@@ -497,7 +1526,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings (auth-student)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized access\"\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings 1 (auth-admin)",
@@ -506,7 +1603,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk1ODcyNiwiZXhwIjoxNjc2OTYxNzI2fQ.9C72PWzLAwU4wOrOHTW0jk8rN1Khx8VqnoKw-DnIrvk",
+						"value": "{{currentJwtTokenAdmin}}",
 						"type": "text"
 					}
 				],
@@ -530,7 +1627,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings 1 (auth-admin)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "491"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"70.0\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-30.00000, 30.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-25T23:12:40.030Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"_id\": \"63fa95e820be69282878bec5\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/readings/:id 1 (auth-admin)",
@@ -539,7 +1704,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk0NDEwOCwiZXhwIjoxNjc2OTQ3MTA4fQ.GM7Hx7cV1cJkbecl5qefYRi0W6EZA6kSP9Zm1jTmf18",
+						"value": "{{currentJwtTokenAdmin}}",
 						"type": "text"
 					}
 				],
@@ -553,33 +1718,102 @@
 					}
 				},
 				"url": {
-					"raw": "{{api_endpoint}}/data/readings/63f2fb320be22c39ece6ee2c",
+					"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"data",
 						"readings",
-						"63f2fb320be22c39ece6ee2c"
+						"63f9aae72135908d2391bbb1"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings/:id 1 (auth-admin)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Location\": \"-55.00000, 55.00000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f9aae72135908d2391bbb1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "489"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63f9aae72135908d2391bbb1\",\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"50\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-55.00000, 55.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-25T06:29:59.889Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
-			"name": "/data/readings N (auth-admin)",
+			"name": "/data/readings/:id 1 (auth-admin)",
 			"request": {
-				"method": "POST",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njg2Njc1MCwiZXhwIjoxNjc2ODY5NzUwfQ.cUFy4O5rB-ZKVtRKzGcPyxEEOir5vbLNsCH2dPQ-DpI",
+						"value": "{{currentJwtTokenAdmin}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 1\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 2\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 3\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 4\",\r\n        \"Location\": \"-30.00000, 30.00000\",\r\n        \"Temperature (°F)\": \"80.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 5\",\r\n        \"Location\": \"-40.00000, 40.00000\",\r\n        \"Temperature (°F)\": \"85.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"5.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"80.0\",\r\n        \"Vapor Pressure (kPa)\": \"1.00\",\r\n        \"Humidity (%)\": \"50.0\",\r\n        \"Wind Direction (°)\": \"200.0\",\r\n        \"Wind Speed (m/s)\": \"1.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA 6\",\r\n        \"Location\": \"-45.00000, 45.00000\",\r\n        \"Temperature (°F)\": \"75.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"10.00\",\r\n        \"Precipitation mm/h\": \"0.0\",\r\n        \"Solar Radiation (W/m2)\": \"70.0\",\r\n        \"Vapor Pressure (kPa)\": \"3.00\",\r\n        \"Humidity (%)\": \"90.0\",\r\n        \"Wind Direction (°)\": \"50.0\",\r\n        \"Wind Speed (m/s)\": \"5.00\"\r\n    }\r\n]",
+					"raw": "{\r\n    \"Humidity (%)\": \"50\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -587,17 +1821,257 @@
 					}
 				},
 				"url": {
-					"raw": "{{api_endpoint}}/data/readings",
+					"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"data",
-						"readings"
+						"readings",
+						"63f9aae72135908d2391bbb1"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/readings/:id 1 (auth-admin)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Humidity (%)\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f9aae72135908d2391bbb1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "489"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63f9aae72135908d2391bbb1\",\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"50\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-55.00000, 55.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-25T06:29:59.889Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "/data/readings/:id (auth-student)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentJwtTokenStudent}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f45c19bf95fa765835b57e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/data/readings/:id (auth-student)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f45c19bf95fa765835b57e"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:13:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized access\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/data/readings/:id (auth-admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentJwtTokenAdmin}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings",
+						"63f45c19bf95fa765835b57e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/data/readings/:id (auth-admin)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings/63f45c19bf95fa765835b57e",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings",
+								"63f45c19bf95fa765835b57e"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "491"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:13:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"63f45c19bf95fa765835b57e\",\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"70.0\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-30.00000, 30.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-21T05:52:25.995Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"__v\": 0\n}"
+				}
+			]
 		},
 		{
 			"name": "/data/advanced/max-precipitation (auth)",
@@ -606,7 +2080,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjQyNTFmZDI3NTg2ZmM2N2NiMDg5NiIsImlhdCI6MTY3Njk1NzU0NSwiZXhwIjoxNjc2OTYwNTQ1fQ.XitgtN2BEB8cwXIp_hmZBUvscaMtA19TQB3DozU5WGc",
+						"value": "{{currentJwtTokenStudent}}",
 						"type": "text"
 					}
 				],
@@ -622,7 +2096,67 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/advanced/max-precipitation (auth)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/advanced/max-precipitation",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"advanced",
+								"max-precipitation"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "512"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:13:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"63f2fbb80be22c39ece6ee35\",\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n        \"Humidity (%)\": \"70.0\",\n        \"Lightning Average Distance (km)\": \"0.0\",\n        \"Lightning Strike Count\": \"0.0\",\n        \"Location\": \"-30.00000, 30.00000\",\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\n        \"Precipitation mm/h\": \"10.0\",\n        \"Solar Radiation (W/m2)\": \"90.0\",\n        \"Temperature (°C)\": \"40.0\",\n        \"Time\": \"2023-02-20T04:48:56.510Z\",\n        \"Vapor Pressure (kPa)\": \"2.00\",\n        \"Wind Direction (°)\": \"300.0\",\n        \"Wind Speed (m/s)\": \"2.00\",\n        \"__v\": 0,\n        \"precipitation\": 10\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "/data/query?station&start&end (auth)",
@@ -631,7 +2165,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjJlYzMzYWE2NTM4Y2Q4MTA4ZTE1NSIsImlhdCI6MTY3Njk1ODcyNiwiZXhwIjoxNjc2OTYxNzI2fQ.9C72PWzLAwU4wOrOHTW0jk8rN1Khx8VqnoKw-DnIrvk",
+						"value": "{{currentJwtTokenStudent}}",
 						"type": "text"
 					}
 				],
@@ -660,7 +2194,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "/data/query?station&start&end (auth)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_endpoint}}/data/query?station=CUSTOM LOCATION FAKE DATA X&start=2023-00-00T00:00:00.000Z&end=2023-02-20T04:46:50.031Z",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"query"
+							],
+							"query": [
+								{
+									"key": "station",
+									"value": "CUSTOM LOCATION FAKE DATA X"
+								},
+								{
+									"key": "start",
+									"value": "2023-00-00T00:00:00.000Z"
+								},
+								{
+									"key": "end",
+									"value": "2023-02-20T04:46:50.031Z"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "475"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:13:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"63f2fb320be22c39ece6ee2c\",\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n        \"Precipitation mm/h\": \"5.0\",\n        \"Solar Radiation (W/m2)\": \"90.0\",\n        \"Temperature (°C)\": \"40.0\",\n        \"Time\": \"2023-02-20T04:46:42.922Z\"\n    },\n    {\n        \"_id\": \"63f2fb360be22c39ece6ee2f\",\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n        \"Precipitation mm/h\": \"4.0\",\n        \"Solar Radiation (W/m2)\": \"90.0\",\n        \"Temperature (°C)\": \"40.0\",\n        \"Time\": \"2023-02-20T04:46:46.517Z\"\n    }\n]"
+				}
+			]
 		}
 	],
 	"event": [
@@ -687,6 +2294,16 @@
 		{
 			"key": "api_endpoint",
 			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "currentJwtTokenStudent",
+			"value": "JWT_FOR_STUDENTS",
+			"type": "string"
+		},
+		{
+			"key": "currentJwtTokenAdmin",
+			"value": "JWT_FOR_ADMINS",
 			"type": "string"
 		}
 	]
