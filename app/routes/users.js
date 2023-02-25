@@ -67,7 +67,7 @@ router.delete("/users/:id", function (req, res) {
       console.log(err);
     } else {
       console.log(results);
-      res.status(200)
+      res.status(202)
         .send(results);
     }
   });
@@ -83,7 +83,7 @@ router.delete("/users/advanced/all-students", function (req, res) {
       console.log(err);
     } else {
       console.log(results);
-      res.status(200)
+      res.status(202)
         .send(results);
     }
   });
