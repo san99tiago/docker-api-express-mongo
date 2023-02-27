@@ -80,8 +80,3 @@
 # --> h) Delete multiple objects
 # --> i) Update a single object
 # --> j) Update multiple objects
-
-
-
-# TODOs:
-# - Create triggers

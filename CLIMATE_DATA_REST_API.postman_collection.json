@@ -1698,6 +1698,107 @@
 			]
 		},
 		{
+			"name": "/data/readings N (auth-admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentJwtTokenAdmin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n        \"Location\": \"-32.00000, 32.00000\",\r\n        \"Temperature (°C)\": \"42.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"10.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    },\r\n    {\r\n        \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n        \"Location\": \"-28.00000, 28.00000\",\r\n        \"Temperature (°C)\": \"38.0\",\r\n        \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n        \"Lightning Average Distance (km)\": \"0.0\",\r\n        \"Lightning Strike Count\": \"0.0\",\r\n        \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n        \"Precipitation mm/h\": \"10.0\",\r\n        \"Solar Radiation (W/m2)\": \"90.0\",\r\n        \"Vapor Pressure (kPa)\": \"2.00\",\r\n        \"Humidity (%)\": \"70.0\",\r\n        \"Wind Direction (°)\": \"300.0\",\r\n        \"Wind Speed (m/s)\": \"2.00\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/data/readings",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"data",
+						"readings"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/data/readings 1 (auth-admin)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{currentJwtTokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\r\n    \"Location\": \"-30.00000, 30.00000\",\r\n    \"Temperature (°C)\": \"40.0\",\r\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\r\n    \"Lightning Average Distance (km)\": \"0.0\",\r\n    \"Lightning Strike Count\": \"0.0\",\r\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\r\n    \"Precipitation mm/h\": \"10.0\",\r\n    \"Solar Radiation (W/m2)\": \"90.0\",\r\n    \"Vapor Pressure (kPa)\": \"2.00\",\r\n    \"Humidity (%)\": \"70.0\",\r\n    \"Wind Direction (°)\": \"300.0\",\r\n    \"Wind Speed (m/s)\": \"2.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/data/readings",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"data",
+								"readings"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "491"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 23:12:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Atmospheric Pressure (kPa)\": \"100.00\",\n    \"Device Name\": \"CUSTOM LOCATION FAKE DATA X\",\n    \"Humidity (%)\": \"70.0\",\n    \"Lightning Average Distance (km)\": \"0.0\",\n    \"Lightning Strike Count\": \"0.0\",\n    \"Location\": \"-30.00000, 30.00000\",\n    \"Maximum Wind Speed (m/s)\": \"4.00\",\n    \"Precipitation mm/h\": \"10.0\",\n    \"Solar Radiation (W/m2)\": \"90.0\",\n    \"Temperature (°C)\": \"40.0\",\n    \"Time\": \"2023-02-25T23:12:40.030Z\",\n    \"Vapor Pressure (kPa)\": \"2.00\",\n    \"Wind Direction (°)\": \"300.0\",\n    \"Wind Speed (m/s)\": \"2.00\",\n    \"_id\": \"63fa95e820be69282878bec5\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
 			"name": "/data/readings/:id 1 (auth-admin)",
 			"request": {
 				"method": "PUT",
@@ -1710,7 +1811,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Location\": \"-55.00000, 55.00000\"\r\n}",
+					"raw": "{\r\n    \"Location\": \"33.00000, 22.00000\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1718,14 +1819,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{api_endpoint}}/data/readings/63f9aae72135908d2391bbb1",
+					"raw": "{{api_endpoint}}/data/readings/63fc17035148de9ceb304576",
 					"host": [
 						"{{api_endpoint}}"
 					],
 					"path": [
 						"data",
 						"readings",
-						"63f9aae72135908d2391bbb1"
+						"63fc17035148de9ceb304576"
 					]
 				}
 			},
