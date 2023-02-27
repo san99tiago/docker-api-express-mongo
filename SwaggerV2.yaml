@@ -1,0 +1,1634 @@
+swagger: '2.0'
+info:
+  title: CLIMATE DATA REST API - OpenAPI 3.0
+  description: |-
+    This is an amazing REST-API developed by the UpTown IT team for allowing Students and Teachers to interact with Raw-Weather-Data collected from the Weather Station ATM41 (Realtime).
+    The endpoints shown here have two purposes:
+      1. Interact with Users (that could be administrators, teachers or students).
+      2. Interact with Data obtained from the Weather Stations.
+
+host: localhost:3000
+basePath: /
+paths:
+  /:
+    get:
+      summary: /
+      tags:
+      - Misc
+      operationId: /
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1'
+          examples:
+            application/json; charset=utf-8:
+              message: Welcome to the default endpoint for the climate raw data API!
+              paths_auth:
+              - /users/register [POST]
+              - /users/login [POST]
+              paths_data_students_and_teachers:
+              - '[GET] /data/readings'
+              paths_data_teachers_only:
+              - '[POST] /data/readings'
+              usage_1: First, make sure that you register with your email at {'/users/register' [POST]} with 'x-www-form-urlencoded' parameters of 'fullName', 'email', and 'password'. This will create your user on the system.
+              usage_2: After registering, go to {'/users/login' [POST]} with 'x-www-form-urlencoded' parameters of 'email' and 'password', and obtain the JWT token.
+              usage_3: "If you are a <student> or a <teacher>, you can access {'/data/*' [GET]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)"
+              usage_4: "If you are a <teacher>, you can access {'/data/*' [POST]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)"
+              usage_5: If you try to access the <student> or <teacher> endpoints without the JWT token (corresponding to the 'Authorization' header value), you won't be able to access the endpoint (you can try).
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '1308'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:06:30 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/query:
+    get:
+      summary: /users/query?role
+      tags:
+      - Misc
+      operationId: /users/query?role
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: role
+        in: query
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            default: ''
+            items:
+              $ref: '#/definitions/~1users~1query%3Frole'
+          examples:
+            application/json; charset=utf-8:
+            - _id: 63fa5a5f20be69282878be87
+              fullName: Student 1
+              email: student1@gmail.com
+              role: student
+            - _id: 63fa947f20be69282878be98
+              fullName: Student 2
+              email: student2@gmail.com
+              role: student
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '209'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:06:43 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/register:
+    post:
+      summary: /users/register
+      tags:
+      - Misc
+      operationId: /users/register
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: fullName
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: email
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: password
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1users~1register'
+          examples:
+            application/json; charset=utf-8:
+              message: User Registered successfully
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '120'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:07:05 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/login:
+    post:
+      summary: /users/login (student or admin)
+      tags:
+      - Misc
+      operationId: /users/login(student1)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: email
+        in: formData
+        required: true
+        type: string
+        description: ''
+      - name: password
+        in: formData
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1users~1login%28student1%29'
+          examples:
+            application/json; charset=utf-8:
+              user:
+                id: 63fa5a5f20be69282878be87
+                email: student1@gmail.com
+                fullName: Student 1
+              message: Login was successful. Use 'Authorization' header with the given 'accessToken'
+              accessToken: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE1YTVmMjBiZTY5MjgyODc4YmU4NyIsImlhdCI6MTY3NzM2NjUyOCwiZXhwIjoxNjc3MzY5NTI4fQ.0lq3_pl5eDovswkbuifTOqAnRvKMUUHqZ9Ys92pWrXg
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '376'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:08:48 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/advanced/make-admins:
+    put:
+      summary: /users/advanced/make-admins
+      tags:
+      - Misc
+      operationId: /users/advanced/make-admins
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          example:
+          - student1@gmail.com
+          - student2@gmail.com
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1users~1advanced~1make-admins'
+          examples:
+            application/json; charset=utf-8:
+              acknowledged: true
+              modifiedCount: 2
+              upsertedId: null
+              upsertedCount: 0
+              matchedCount: 2
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '92'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:09:30 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/{id}:
+    delete:
+      summary: /users/:id (student)
+      tags:
+      - Misc
+      operationId: /users/:id(student)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters: []
+      responses:
+        '202':
+          description: Accepted
+          schema:
+            $ref: '#/definitions/~1users~1%3Aid%28student%29'
+          examples:
+            application/json; charset=utf-8:
+              _id: 63fa5a5f20be69282878be87
+              fullName: Student 1
+              email: student1@gmail.com
+              role: student
+              password: $2b$08$wet1IcwxLcQzuX4THH0lwuNx.pExQoxNNFNOVMwp0d8keDvsKgZhC
+              createdAt: 2023-02-25T18:58:39.115Z
+              lastLogin: 2023-02-25T23:08:48.311Z
+              __v: 0
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '263'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:10:15 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /users/advanced/all-students:
+    delete:
+      summary: /users/advanced/all-students
+      tags:
+      - Misc
+      operationId: /users/advanced/all-students
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters: []
+      responses:
+        '202':
+          description: Accepted
+          schema:
+            $ref: '#/definitions/~1users~1advanced~1all-students'
+          examples:
+            application/json; charset=utf-8:
+              acknowledged: true
+              deletedCount: 1
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '38'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:10:27 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+  /data/readings/{id}:
+    get:
+      summary: /data/readings/:id (auth)
+      tags:
+      - Misc
+      operationId: /data/readings/:id(auth-student)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1data~1readings~1%3Aid%28auth-student%29'
+          examples:
+            application/json; charset=utf-8:
+              _id: 63f9aae72135908d2391bbb1
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Humidity (%): '50'
+              Lightning Average Distance (km): '0.0'
+              Lightning Strike Count: '0.0'
+              Location: -55.00000, 55.00000
+              Maximum Wind Speed (m/s): '4.00'
+              Precipitation mm/h: '10.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-25T06:29:59.889Z
+              Vapor Pressure (kPa): '2.00'
+              Wind Direction (°): '300.0'
+              Wind Speed (m/s): '2.00'
+              __v: 0
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '489'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:11:16 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+    put:
+      summary: /data/readings/:id 1 (auth-admin)
+      tags:
+      - Misc
+      operationId: /data/readings/:id1(auth-admin)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1data~1readings~1%3Aid1%28auth-admin%29request'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1data~1readings~1%3Aid1%28auth-admin%29'
+          examples:
+            application/json; charset=utf-8:
+              _id: 63f9aae72135908d2391bbb1
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Humidity (%): '50'
+              Lightning Average Distance (km): '0.0'
+              Lightning Strike Count: '0.0'
+              Location: -55.00000, 55.00000
+              Maximum Wind Speed (m/s): '4.00'
+              Precipitation mm/h: '10.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-25T06:29:59.889Z
+              Vapor Pressure (kPa): '2.00'
+              Wind Direction (°): '300.0'
+              Wind Speed (m/s): '2.00'
+              __v: 0
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '489'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:12:51 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+    patch:
+      summary: /data/readings/:id 1 (auth-admin)
+      tags:
+      - Misc
+      operationId: /data/readings/:id1(auth-admin)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1data~1readings~1%3Aid1%28auth-admin%29request1'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1data~1readings~1%3Aid1%28auth-admin%29'
+          examples:
+            application/json; charset=utf-8:
+              _id: 63f9aae72135908d2391bbb1
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Humidity (%): '50'
+              Lightning Average Distance (km): '0.0'
+              Lightning Strike Count: '0.0'
+              Location: -55.00000, 55.00000
+              Maximum Wind Speed (m/s): '4.00'
+              Precipitation mm/h: '10.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-25T06:29:59.889Z
+              Vapor Pressure (kPa): '2.00'
+              Wind Direction (°): '300.0'
+              Wind Speed (m/s): '2.00'
+              __v: 0
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '489'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:12:57 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+    delete:
+      summary: /data/readings/:id (auth-student)
+      tags:
+      - Misc
+      operationId: /data/readings/:id(auth-student)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/~1data~1readings~1%3Aid%28auth-student%292'
+          examples:
+            application/json; charset=utf-8:
+              message: Unauthorized access
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '33'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:13:11 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+  /data/readings:
+    post:
+      summary: /data/readings (auth-admin)
+      tags:
+      - Misc
+      operationId: /data/readings(auth-admin)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1data~1readings%28auth-student%29request'
+      responses:
+        '201':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1data~1readings%28auth-student%291'
+          examples:
+            application/json; charset=utf-8:
+            - _id: 63f2fbb80be22c39ece6ee35
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Humidity (%): '70.0'
+              Lightning Average Distance (km): '0.0'
+              Lightning Strike Count: '0.0'
+              Location: -30.00000, 30.00000
+              Maximum Wind Speed (m/s): '4.00'
+              Precipitation mm/h: '10.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-20T04:48:56.510Z
+              Vapor Pressure (kPa): '2.00'
+              Wind Direction (°): '300.0'
+              Wind Speed (m/s): '2.00'
+              __v: 0
+              precipitation: 10
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '33'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:12:33 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+  /data/advanced/max-precipitation:
+    get:
+      summary: /data/advanced/max-precipitation (auth)
+      tags:
+      - Misc
+      operationId: /data/advanced/max-precipitation(auth)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            default: ''
+            items:
+              $ref: '#/definitions/~1data~1advanced~1max-precipitation%28auth%29'
+          examples:
+            application/json; charset=utf-8:
+            - _id: 63f2fbb80be22c39ece6ee35
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Humidity (%): '70.0'
+              Lightning Average Distance (km): '0.0'
+              Lightning Strike Count: '0.0'
+              Location: -30.00000, 30.00000
+              Maximum Wind Speed (m/s): '4.00'
+              Precipitation mm/h: '10.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-20T04:48:56.510Z
+              Vapor Pressure (kPa): '2.00'
+              Wind Direction (°): '300.0'
+              Wind Speed (m/s): '2.00'
+              __v: 0
+              precipitation: 10
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '512'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:13:32 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+  /data/query:
+    get:
+      summary: /data/query?station&start&end (auth)
+      tags:
+      - Misc
+      operationId: /data/query?station&start&end(auth)
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: station
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: start
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: end
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            default: ''
+            items:
+              $ref: '#/definitions/~1data~1query%3Fstation%26start%26end%28auth%29'
+          examples:
+            application/json; charset=utf-8:
+            - _id: 63f2fb320be22c39ece6ee2c
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Precipitation mm/h: '5.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-20T04:46:42.922Z
+            - _id: 63f2fb360be22c39ece6ee2f
+              Atmospheric Pressure (kPa): '100.00'
+              Device Name: CUSTOM LOCATION FAKE DATA X
+              Precipitation mm/h: '4.0'
+              Solar Radiation (W/m2): '90.0'
+              Temperature (°C): '40.0'
+              Time: 2023-02-20T04:46:46.517Z
+          headers:
+            X-Powered-By:
+              type: string
+              default: Express
+            Access-Control-Allow-Origin:
+              type: string
+              default: '*'
+            Content-Length:
+              type: string
+              default: '475'
+            Date:
+              type: string
+              default: Sat, 25 Feb 2023 23:13:42 GMT
+            Connection:
+              type: string
+              default: keep-alive
+            Keep-Alive:
+              type: string
+              default: timeout=5
+      security: []
+definitions:
+  /:
+    title: /
+    example:
+      message: Welcome to the default endpoint for the climate raw data API!
+      paths_auth:
+      - /users/register [POST]
+      - /users/login [POST]
+      paths_data_students_and_teachers:
+      - '[GET] /data/readings'
+      paths_data_teachers_only:
+      - '[POST] /data/readings'
+      usage_1: First, make sure that you register with your email at {'/users/register' [POST]} with 'x-www-form-urlencoded' parameters of 'fullName', 'email', and 'password'. This will create your user on the system.
+      usage_2: After registering, go to {'/users/login' [POST]} with 'x-www-form-urlencoded' parameters of 'email' and 'password', and obtain the JWT token.
+      usage_3: "If you are a <student> or a <teacher>, you can access {'/data/*' [GET]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)"
+      usage_4: "If you are a <teacher>, you can access {'/data/*' [POST]} with 'headers' of 'Authorization' and the value of the obtained JWT token (like this: 'JWT TOKEN_VALUE', remember to keep the JWT word and then a space in the middle)"
+      usage_5: If you try to access the <student> or <teacher> endpoints without the JWT token (corresponding to the 'Authorization' header value), you won't be able to access the endpoint (you can try).
+    type: object
+    properties:
+      message:
+        type: string
+      paths_auth:
+        type: array
+        items:
+          type: string
+      paths_data_students_and_teachers:
+        type: array
+        items:
+          type: string
+      paths_data_teachers_only:
+        type: array
+        items:
+          type: string
+      usage_1:
+        type: string
+      usage_2:
+        type: string
+      usage_3:
+        type: string
+      usage_4:
+        type: string
+      usage_5:
+        type: string
+    required:
+    - message
+    - paths_auth
+    - paths_data_students_and_teachers
+    - paths_data_teachers_only
+    - usage_1
+    - usage_2
+    - usage_3
+    - usage_4
+    - usage_5
+  /users/query?role:
+    title: /users/query?role
+    example:
+      _id: 63fa5a5f20be69282878be87
+      fullName: Student 1
+      email: student1@gmail.com
+      role: student
+    type: object
+    properties:
+      _id:
+        type: string
+      fullName:
+        type: string
+      email:
+        type: string
+      role:
+        type: string
+    required:
+    - _id
+    - fullName
+    - email
+    - role
+  /users/register(incomplete)1:
+    title: /users/register(incomplete)1
+    example:
+      message: You must pass properties 'fullName', 'email', 'role' and 'password' in the body as 'x-www-form-urlencoded'
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /users/register(student1):
+    title: /users/register(student1)
+    example:
+      message: User Registered successfully
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /users/register(student2):
+    title: /users/register(student2)
+    example:
+      message: User Registered successfully
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /users/register(admin):
+    title: /users/register(admin)
+    example:
+      message: User Registered successfully
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /users/login(student1):
+    title: /users/login(student1)
+    example:
+      user:
+        id: 63fa5a5f20be69282878be87
+        email: student1@gmail.com
+        fullName: Student 1
+      message: Login was successful. Use 'Authorization' header with the given 'accessToken'
+      accessToken: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE1YTVmMjBiZTY5MjgyODc4YmU4NyIsImlhdCI6MTY3NzM2NjUyOCwiZXhwIjoxNjc3MzY5NTI4fQ.0lq3_pl5eDovswkbuifTOqAnRvKMUUHqZ9Ys92pWrXg
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      message:
+        type: string
+      accessToken:
+        type: string
+    required:
+    - user
+    - message
+    - accessToken
+  User:
+    title: User
+    example:
+      id: 63fa5a5f20be69282878be87
+      email: student1@gmail.com
+      fullName: Student 1
+    type: object
+    properties:
+      id:
+        type: string
+      email:
+        type: string
+      fullName:
+        type: string
+    required:
+    - id
+    - email
+    - fullName
+  /users/login(student2):
+    title: /users/login(student2)
+    example:
+      user:
+        id: 63fa94b520be69282878be9d
+        email: student2@gmail.com
+        fullName: Student 2
+      message: Login was successful. Use 'Authorization' header with the given 'accessToken'
+      accessToken: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE5NGI1MjBiZTY5MjgyODc4YmU5ZCIsImlhdCI6MTY3NzM2NjU0MCwiZXhwIjoxNjc3MzY5NTQwfQ.CDBnwXSrY8JXvP2ut-OyoPGcZEoCSfsDxJNgcbo4Jco
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      message:
+        type: string
+      accessToken:
+        type: string
+    required:
+    - user
+    - message
+    - accessToken
+  /users/login(admin):
+    title: /users/login(admin)
+    example:
+      user:
+        id: 63fa94e520be69282878bea5
+        email: admin1@gmail.com
+        fullName: Admin 1
+      message: Login was successful. Use 'Authorization' header with the given 'accessToken'
+      accessToken: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmE5NGU1MjBiZTY5MjgyODc4YmVhNSIsImlhdCI6MTY3NzM2NjU1MSwiZXhwIjoxNjc3MzY5NTUxfQ.MJjXveO-C3nQ67mQfHtz1h0ptlyx9JfPT2jqYIYVPDg
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      message:
+        type: string
+      accessToken:
+        type: string
+    required:
+    - user
+    - message
+    - accessToken
+  /users/login(wrong)1:
+    title: /users/login(wrong)1
+    example:
+      message: User Not found.
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /users/advanced/make-admins:
+    title: /users/advanced/make-admins
+    example:
+      acknowledged: true
+      modifiedCount: 2
+      upsertedId: null
+      upsertedCount: 0
+      matchedCount: 2
+    type: object
+    properties:
+      acknowledged:
+        type: boolean
+      modifiedCount:
+        type: integer
+        format: int32
+      upsertedId:
+        type: string
+      upsertedCount:
+        type: integer
+        format: int32
+      matchedCount:
+        type: integer
+        format: int32
+    required:
+    - acknowledged
+    - modifiedCount
+    - upsertedId
+    - upsertedCount
+    - matchedCount
+  /users/:id(student):
+    title: /users/:id(student)
+    example:
+      _id: 63fa5a5f20be69282878be87
+      fullName: Student 1
+      email: student1@gmail.com
+      role: student
+      password: $2b$08$wet1IcwxLcQzuX4THH0lwuNx.pExQoxNNFNOVMwp0d8keDvsKgZhC
+      createdAt: 2023-02-25T18:58:39.115Z
+      lastLogin: 2023-02-25T23:08:48.311Z
+      __v: 0
+    type: object
+    properties:
+      _id:
+        type: string
+      fullName:
+        type: string
+      email:
+        type: string
+      role:
+        type: string
+      password:
+        type: string
+      createdAt:
+        type: string
+      lastLogin:
+        type: string
+      __v:
+        type: integer
+        format: int32
+    required:
+    - _id
+    - fullName
+    - email
+    - role
+    - password
+    - createdAt
+    - lastLogin
+    - __v
+  /users/advanced/all-students:
+    title: /users/advanced/all-students
+    example:
+      acknowledged: true
+      deletedCount: 1
+    type: object
+    properties:
+      acknowledged:
+        type: boolean
+      deletedCount:
+        type: integer
+        format: int32
+    required:
+    - acknowledged
+    - deletedCount
+  /data/readings/:id(non-auth)1:
+    title: /data/readings/:id(non-auth)1
+    example:
+      message: Invalid JWT token
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /data/readings/:id(auth-student):
+    title: /data/readings/:id(auth-student)
+    example:
+      _id: 63f9aae72135908d2391bbb1
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Humidity (%): '50'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Location: -55.00000, 55.00000
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-25T06:29:59.889Z
+      Vapor Pressure (kPa): '2.00'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+      __v: 0
+    type: object
+    properties:
+      _id:
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Humidity (%):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Location:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+      __v:
+        type: integer
+        format: int32
+    required:
+    - _id
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Humidity (%)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Location
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+    - Vapor Pressure (kPa)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+    - __v
+  /data/readings/:id(auth-admin):
+    title: /data/readings/:id(auth-admin)
+    example:
+      _id: 63f45c19bf95fa765835b57e
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Humidity (%): '70.0'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Location: -30.00000, 30.00000
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-21T05:52:25.995Z
+      Vapor Pressure (kPa): '2.00'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+      __v: 0
+    type: object
+    properties:
+      _id:
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Humidity (%):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Location:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+      __v:
+        type: integer
+        format: int32
+    required:
+    - _id
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Humidity (%)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Location
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+    - Vapor Pressure (kPa)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+    - __v
+  /data/readings(auth-student)request:
+    title: /data/readings(auth-student)request
+    example:
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Location: -30.00000, 30.00000
+      Temperature (°C): '40.0'
+      Atmospheric Pressure (kPa): '100.00'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Vapor Pressure (kPa): '2.00'
+      Humidity (%): '70.0'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+    type: object
+    properties:
+      Device Name:
+        type: string
+      Location:
+        type: string
+      Temperature (°C):
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Humidity (%):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+    required:
+    - Device Name
+    - Location
+    - Temperature (°C)
+    - Atmospheric Pressure (kPa)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Vapor Pressure (kPa)
+    - Humidity (%)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+  /data/readings(auth-student)1:
+    title: /data/readings(auth-student)1
+    example:
+      message: Unauthorized access
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /data/readings1(auth-admin)request:
+    title: /data/readings1(auth-admin)request
+    example:
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Location: -30.00000, 30.00000
+      Temperature (°C): '40.0'
+      Atmospheric Pressure (kPa): '100.00'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Vapor Pressure (kPa): '2.00'
+      Humidity (%): '70.0'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+    type: object
+    properties:
+      Device Name:
+        type: string
+      Location:
+        type: string
+      Temperature (°C):
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Humidity (%):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+    required:
+    - Device Name
+    - Location
+    - Temperature (°C)
+    - Atmospheric Pressure (kPa)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Vapor Pressure (kPa)
+    - Humidity (%)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+  /data/readings1(auth-admin):
+    title: /data/readings1(auth-admin)
+    example:
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Humidity (%): '70.0'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Location: -30.00000, 30.00000
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-25T23:12:40.030Z
+      Vapor Pressure (kPa): '2.00'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+      _id: 63fa95e820be69282878bec5
+      __v: 0
+    type: object
+    properties:
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Humidity (%):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Location:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+      _id:
+        type: string
+      __v:
+        type: integer
+        format: int32
+    required:
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Humidity (%)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Location
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+    - Vapor Pressure (kPa)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+    - _id
+    - __v
+  /data/readings/:id1(auth-admin)request:
+    title: /data/readings/:id1(auth-admin)request
+    example:
+      Location: -55.00000, 55.00000
+    type: object
+    properties:
+      Location:
+        type: string
+    required:
+    - Location
+  /data/readings/:id1(auth-admin):
+    title: /data/readings/:id1(auth-admin)
+    example:
+      _id: 63f9aae72135908d2391bbb1
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Humidity (%): '50'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Location: -55.00000, 55.00000
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-25T06:29:59.889Z
+      Vapor Pressure (kPa): '2.00'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+      __v: 0
+    type: object
+    properties:
+      _id:
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Humidity (%):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Location:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+      __v:
+        type: integer
+        format: int32
+    required:
+    - _id
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Humidity (%)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Location
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+    - Vapor Pressure (kPa)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+    - __v
+  /data/readings/:id1(auth-admin)request1:
+    title: /data/readings/:id1(auth-admin)request1
+    example:
+      Humidity (%): '50'
+    type: object
+    properties:
+      Humidity (%):
+        type: string
+    required:
+    - Humidity (%)
+  /data/readings/:id(auth-student)2:
+    title: /data/readings/:id(auth-student)2
+    example:
+      message: Unauthorized access
+    type: object
+    properties:
+      message:
+        type: string
+    required:
+    - message
+  /data/advanced/max-precipitation(auth):
+    title: /data/advanced/max-precipitation(auth)
+    example:
+      _id: 63f2fbb80be22c39ece6ee35
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Humidity (%): '70.0'
+      Lightning Average Distance (km): '0.0'
+      Lightning Strike Count: '0.0'
+      Location: -30.00000, 30.00000
+      Maximum Wind Speed (m/s): '4.00'
+      Precipitation mm/h: '10.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-20T04:48:56.510Z
+      Vapor Pressure (kPa): '2.00'
+      Wind Direction (°): '300.0'
+      Wind Speed (m/s): '2.00'
+      __v: 0
+      precipitation: 10
+    type: object
+    properties:
+      _id:
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Humidity (%):
+        type: string
+      Lightning Average Distance (km):
+        type: string
+      Lightning Strike Count:
+        type: string
+      Location:
+        type: string
+      Maximum Wind Speed (m/s):
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+      Vapor Pressure (kPa):
+        type: string
+      Wind Direction (°):
+        type: string
+      Wind Speed (m/s):
+        type: string
+      __v:
+        type: integer
+        format: int32
+      precipitation:
+        type: integer
+        format: int32
+    required:
+    - _id
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Humidity (%)
+    - Lightning Average Distance (km)
+    - Lightning Strike Count
+    - Location
+    - Maximum Wind Speed (m/s)
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+    - Vapor Pressure (kPa)
+    - Wind Direction (°)
+    - Wind Speed (m/s)
+    - __v
+    - precipitation
+  /data/query?station&start&end(auth):
+    title: /data/query?station&start&end(auth)
+    example:
+      _id: 63f2fb320be22c39ece6ee2c
+      Atmospheric Pressure (kPa): '100.00'
+      Device Name: CUSTOM LOCATION FAKE DATA X
+      Precipitation mm/h: '5.0'
+      Solar Radiation (W/m2): '90.0'
+      Temperature (°C): '40.0'
+      Time: 2023-02-20T04:46:42.922Z
+    type: object
+    properties:
+      _id:
+        type: string
+      Atmospheric Pressure (kPa):
+        type: string
+      Device Name:
+        type: string
+      Precipitation mm/h:
+        type: string
+      Solar Radiation (W/m2):
+        type: string
+      Temperature (°C):
+        type: string
+      Time:
+        type: string
+    required:
+    - _id
+    - Atmospheric Pressure (kPa)
+    - Device Name
+    - Precipitation mm/h
+    - Solar Radiation (W/m2)
+    - Temperature (°C)
+    - Time
+tags:
+- name: Misc
+  description: ''

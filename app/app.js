@@ -8,6 +8,8 @@ let homeRoutes = require("./routes/home");
 let usersRoutes = require("./routes/users");
 let dataRoutes = require("./routes/data");
 
+const createLocationTriggers = require("./triggers/triggers");
+
 // Load ".env" file if it exists
 dotenv.config()
 
@@ -33,6 +35,7 @@ const MONGO_USER = process.env.MONGO_USER;
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
 const MONGO_ENDPOINT = process.env.MONGO_ENDPOINT;
 const MONGO_CONNECTION_STRING = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_ENDPOINT}:27017/api_database`;
+// const MONGO_CONNECTION_STRING = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_ENDPOINT}:27017/api_database?replicaSet=rs0`;
 console.log("MONGO_CONNECTION_STRING: ", MONGO_CONNECTION_STRING);
 try {
   // Connect to MongoDB
@@ -42,7 +45,7 @@ try {
     MONGO_CONNECTION_STRING,
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     }
   )
   .then(() => console.log('MongoDB Connected'))
@@ -52,6 +55,14 @@ try {
 }
 process.on('unhandledRejection', error => {
   console.log('unhandledRejection: ', error.message);
+});
+
+// Create MongoDB triggers
+let db = mongoose.connection;
+db.once('open', function() {
+  console.log('Connected to MongoDB');
+  // Create mongo triggers
+  createLocationTriggers(db);
 });
 
 // Enable routes for different endpoints

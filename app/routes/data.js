@@ -81,7 +81,7 @@ router.post("/data/readings", verifyToken, function (req, res) {
     let dateTimeString =  new Date().toISOString();
 
     if (Array.isArray(req.body)) {
-      console.log("Array Element Update")
+      console.log("Array Element")
       for (let i = 0; i < req.body.length; i++) {
         req.body[i]["Time"] = dateTimeString;
       };
@@ -96,7 +96,7 @@ router.post("/data/readings", verifyToken, function (req, res) {
         console.log(err)
       });
     } else {
-      console.log("Single Element Update")
+      console.log("Single Element")
       req.body["Time"] = dateTimeString;
       const data = new Data(req.body);
       data.save((err, data) => {
